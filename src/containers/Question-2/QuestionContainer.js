@@ -31,10 +31,7 @@ class HouseContainer extends Component {
           <p>It is Loading</p>
         ) : (
           <div>
-            <button onClick={buttonClicked}>Get Questions</button>
-            {this.state.isClicked ? (
-              <Questions allQuestions={this.state.allQuestions} />
-            ) : null}
+            <Questions allQuestions={this.state.allQuestions} />
           </div>
         )}
       </div>
