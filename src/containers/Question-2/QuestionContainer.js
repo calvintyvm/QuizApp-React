@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Questions from "./Questions";
 
-class HouseContainer extends Component {
+class QuestionContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -39,4 +39,4 @@ class HouseContainer extends Component {
   }
 }
 
-export default HouseContainer;
+export default QuestionContainer;

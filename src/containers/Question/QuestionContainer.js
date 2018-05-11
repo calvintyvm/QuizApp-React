@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import Questions from "./Questions";
+import Score from "../Score";
+//ask about redirect or this way
+// import { Route, Redirect } from "react-router";
 
-class HouseContainer extends Component {
+class QuestionContainer extends Component {
   constructor() {
     super();
     this.state = {
       allQuestions: [],
       isLoading: false,
-      isClicked: false
+      isClicked: false,
+      score: 0,
+      current: 0,
+      answer: []
     };
   }
   //film
@@ -22,7 +28,24 @@ class HouseContainer extends Component {
       .catch(error => console.log(error));
   }
 
+  setCurrent(current) {
+    this.setState({ current });
+  }
+  setScore(score) {
+    this.setState({ score });
+  }
+  setCorrectAnswer(answer) {
+    this.setState({ answer });
+  }
+
   render() {
+    let quizzes = this.state.allQuestions.results;
+    let quizzesArray = [];
+    quizzes &&
+      quizzes.map((question, index) => {
+        this.state.answer.push(question.correct_answer);
+      });
+    // console.log(this.state.answer);
     let buttonClicked = () =>
       this.setState({ isClicked: !this.state.isClicked });
     return (
@@ -31,7 +54,19 @@ class HouseContainer extends Component {
           <p>It is Loading</p>
         ) : (
           <div>
-            <Questions allQuestions={this.state.allQuestions} />
+            {this.state.current !== 10 ? (
+              <Questions
+                setScore={this.setScore.bind(this)}
+                current={this.state.current}
+                setCurrent={this.setCurrent.bind(this)}
+                allQuestions={this.state.allQuestions}
+                setCorrectAnswer={this.setCorrectAnswer.bind(this)}
+                score={this.state.score}
+                answer={this.state.answer}
+              />
+            ) : (
+              <h1>Score is {this.state.score}</h1>
+            )}
           </div>
         )}
       </div>
@@ -39,4 +74,4 @@ class HouseContainer extends Component {
   }
 }
 
-export default HouseContainer;
+export default QuestionContainer;

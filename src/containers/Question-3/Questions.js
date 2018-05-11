@@ -1,6 +1,6 @@
 import React from "react";
 
-const House = props => {
+const Question = props => {
   let quizzes = props.allQuestions.results;
 
   return (
@@ -22,7 +22,7 @@ const House = props => {
   );
 };
 
-export default House;
+export default Question;
 
 // {quizzes &&
 //   quizzes.map((question, index) => (
